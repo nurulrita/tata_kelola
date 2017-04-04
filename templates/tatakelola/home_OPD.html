@@ -1,0 +1,51 @@
+{% extends "base_tatakelola.html" %}
+
+
+{% block extra_css %}
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+{% endblock %}
+
+{% block main %}
+<style>
+    .breadcrumb {
+        display:none; !important
+    }
+</style>
+
+
+        <div class="row text-center">
+            <h1 style="margin-bottom:30px">Aplikasi Tata Kelola TIK Pemerintah Kota Depok</h1>
+            <div class="col-md-4">
+            <a href="{% url 'tatakelola:notifikasi' %}">
+                <i class="fa fa-bell-o fa-5" style="font-size: 12em;" aria-hidden="true"></i>
+                <br><span style="font-size: 20px">Notifikasi</span>
+            </a>
+            </div>
+            <div class="col-md-4">
+            <a href="{% url 'tatakelola:kebijakan_dashboard1' %}">
+                <i class="fa fa-file-text fa-5" style="font-size: 12em;" aria-hidden="true"></i>
+                <br><span style="font-size: 20px">Kebijakan</span>
+            </a>
+            </div>
+
+            <div class="col-md-4">
+            <a href="{% url 'tatakelola:proyek_dashboard' %}">
+                <i class="fa fa-tasks fa-5" style="font-size: 12em;" aria-hidden="true"></i>
+                <br><span style="font-size: 20px">Proyek</span>
+            </a>
+            </div>
+            <div class="col-md-4">
+            <a href="{% url 'tatakelola:evaluasiMonitoring_dashboard1' %}">
+                <i class="fa fa-check-square fa-5" style="font-size: 12em;" aria-hidden="true"></i>
+                <br><span style="font-size: 20px">Evaluasi dan Monitoring</span>
+            </a>
+            </div>
+            <div class="col-md-4">
+            <a href="{% url 'tatakelola:bantuan' %}">
+                <i class="fa fa-question-circle-o fa-5" style="font-size: 12em;" aria-hidden="true"></i>
+                <br><span style="font-size: 20px">Bantuan</span>
+            </a>
+            </div>
+        </div>
+
+{% endblock %}

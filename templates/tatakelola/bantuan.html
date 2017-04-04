@@ -1,0 +1,26 @@
+{% extends 'base_tatakelola.html' %}
+{% load staticfiles%}
+
+	{% block main %}
+	<center><h1>Bantuan</h1></center>
+		{% for sec in section %}
+			<h2>{{ sec.name }}</h2>
+			{% for qa in sec.questionanswer_set.all %}
+			<button class="accordion">{{qa.question_title}}</button>
+			<div class="panel">
+			  <p>{{qa.answer}}</p>
+			</div>
+			{% endfor %}
+		{% endfor %}
+	<script>
+		var acc = document.getElementsByClassName("accordion");
+		var i;
+
+		for (i = 0; i < acc.length; i++) {
+			acc[i].onclick = function(){
+				this.classList.toggle("active");
+				this.nextElementSibling.classList.toggle("show");
+			}
+		}
+	</script>
+{% endblock %}

@@ -1,0 +1,51 @@
+{% extends "base_tatakelola.html" %}
+
+{% block breadcrumb_menu %}
+    <a href="{% url 'tatakelola:home' %}">Home</a> / Evaluasi dan Monitoring
+{% endblock %}
+{% block main %}
+
+        <div class="row">
+            <h2 class="text-center">Dashboard Evaluasi dan Monitoring</h2>
+
+            <div class="col-md-6">
+                <p>Total proyek: 2</p>
+                <div class="form-group">
+                    <label class="control-label" for="id_opd">
+                        OPD
+                    </label>
+                    <select class="form-control" id="id_opd" name="opd" title="" required="">
+                        <option value="" selected="selected">---------</option>
+                        <option value="PP">Dinas Kebakaran</option>
+                        <option value="MI">Dinas Pendidikan</option>
+                    </select>
+                </div>
+            </div>
+
+        </div>
+        <div class="row">
+            <table class="table table-bordered table-striped">
+                <thead>
+                    <tr>
+                        <th>Nama OPD</th>
+                        <th>Nama Proyek</th>
+                        <th>Tanggal Terakhir Update</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Dinas Pemadam Kebakaran</td>
+                        <td>Aplikasi Monitoring Kebakaran</td>
+                        <td>20 Maret 2017</td>
+                    </tr>
+                    <tr>
+                        <td>Dinas Pendidikan</td>
+                        <td>Aplikasi Pintar</td>
+                        <td>22 April 2017</td>
+                    </tr>
+
+                </tbody>
+            </table>
+        </div>
+
+{% endblock %}

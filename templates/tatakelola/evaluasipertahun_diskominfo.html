@@ -1,0 +1,32 @@
+{% extends "base_tatakelola.html" %}
+
+{% block breadcrumb_menu %}
+    <a href="{% url 'tatakelola:home' %}">Home</a> / <a href="{% url 'tatakelola:evaluasiMonitoring_dashboard1' %}"> Evaluasi per Tahun</a>
+{% endblock %}
+{% block main %}
+
+        <div class="row">
+            <h2 class="text-center">Dashboard Evaluasi dan Monitoring</h2> <br />
+
+        </div>
+        <div class="row">
+            <table class="table table-bordered table-striped">
+                <thead>
+                    <tr>
+                        <th>Nama OPD</th>
+                        <th>Tahun</th>
+                        <th>Tanggal Terakhir Update</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Dinas Pemadam Kebakaran</td>
+                        <td>2017</td>
+                        <td>20 Maret 2017</td>
+                    </tr>
+
+                </tbody>
+            </table>
+        </div>
+
+{% endblock %}

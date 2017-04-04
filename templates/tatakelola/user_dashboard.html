@@ -1,0 +1,54 @@
+{% extends "base_tatakelola.html" %}
+
+{% block breadcrumb_menu %}
+    <a href ="{% url 'tatakelola:home' %}">Home</a> / User
+{% endblock %}
+{% block main %}
+
+        <div class="row">
+            <h2 class="text-center">Dashboard User</h2>
+
+            <div class="col-md-6">
+                <a href ="{% url 'tatakelola:step1' %}"><button type="button" class="btn">Buat User Baru</button></p></a>
+                <div class="form-group">
+                    <label class="control-label" for="jenis_user">
+                        JENIS USER
+                    </label>
+                    <select class="form-control" id="jenis_user" name="jenis_user" title="" required="">
+                        <option value="" selected="selected">---------</option>
+                        <option value="OPD">OPD</option>
+                        <option value="KOM">Diskominfo</option>
+                    </select>
+                </div>
+            </div>
+
+        </div>
+        <div class="row">
+            <table class="table table-bordered table-striped">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>NIP</th>
+                        <th>Nama</th>
+                        <th>Jenis User</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>12345678</td>
+                        <td>197609192006041004</td>
+                        <td>Budi</td>
+                        <td>OPD</td>
+                    </tr>
+                    <tr>
+                        <td>23456789</td>
+                        <td>197709272006042005</td>
+                        <td>Dewi</td>
+                        <td>Diskominfo</td>
+                    </tr>
+
+                </tbody>
+            </table>
+        </div>
+
+{% endblock %}

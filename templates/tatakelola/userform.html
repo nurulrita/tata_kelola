@@ -1,0 +1,32 @@
+{% extends "base_tatakelola.html" %}
+{% load staticfiles %}
+{% load bootstrap3 %}
+{% bootstrap_css %}
+{% bootstrap_javascript %}
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/step.css' %}">
+{% endblock %}
+{% block breadcrumb_menu %}
+    <a href="{% url 'tatakelola:home' %}">Home</a> /<a href="{% url 'tatakelola:kebijakan_dashboard1' %}">Kebijakan</a> / Buat Baru Usulan Kebijakan
+{% endblock %}
+{% include "tatakelola/step_base.html"%}
+
+{% block main %}
+        <h2 class="text-center">Kebijakan Umum</h2>
+        
+        <div class="row">
+            <div class="col-md-6">
+                {% bootstrap_form form %}
+
+                <button type="button" class="btn btn-success">Tambahkan</button>
+                <button type="button" class="btn btn-warning">Batal</button>
+
+            </div>
+            <div class="col-md-6">
+            </div>
+
+
+
+        </div>
+
+{% endblock %}

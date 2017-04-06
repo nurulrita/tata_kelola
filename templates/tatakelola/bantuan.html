@@ -1,26 +1,32 @@
 {% extends 'base_tatakelola.html' %}
+
+{% block breadcrumb_menu %}
+    <a href="{% url 'tatakelola:home' %}">Home</a> / Bantuan
+{% endblock %}
+
 {% load staticfiles%}
 
 	{% block main %}
 	<center><h1>Bantuan</h1></center>
-		{% for sec in section %}
-			<h2>{{ sec.name }}</h2>
-			{% for qa in sec.questionanswer_set.all %}
-			<button class="accordion">{{qa.question_title}}</button>
-			<div class="panel">
-			  <p>{{qa.answer}}</p>
-			</div>
-			{% endfor %}
-		{% endfor %}
-	<script>
-		var acc = document.getElementsByClassName("accordion");
-		var i;
 
-		for (i = 0; i < acc.length; i++) {
-			acc[i].onclick = function(){
-				this.classList.toggle("active");
-				this.nextElementSibling.classList.toggle("show");
-			}
-		}
-	</script>
+		{% for sec in section %}
+                <h2>{{ sec.name }}</h2>
+                {% for qa in sec.questionanswer_set.all %}
+                    <div id="accordion" class="panel-group">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h4 class="panel-title">
+                                    <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">{{qa.question_title}}</a>
+                                </h4>
+                            </div>
+                            <div id="collapseOne" class="panel-collapse collapse">
+                                <div class="panel-body">
+                                    <p>{{qa.answer}}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            {% endfor %}			
+
 {% endblock %}

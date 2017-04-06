@@ -1,9 +1,13 @@
 from django.conf.urls import url
 from django.views.generic import TemplateView
 from . import views
+from django.contrib.auth.views import login
+
 
 urlpatterns =[
-	url(r'^notifikasi/$', TemplateView.as_view(template_name="tatakelola/notifikasi.html"), {}, 'notifikasi'),
+	url(r'^login/$', login, {}, 'login'),
+	url(r'^notifications/$', views.notifications, {'template_name': 'tatakelola/notifications.html'}, 'notifications'),
+    url(r'^notifications_mark_all_as_read/$', views.notifications_mark_all_as_read, {}, 'notifications_mark_all_as_read'),
     url(r'^step1/$', views.step1, {'template_name': 'tatakelola/step1.html'}, 'step1'),
     url(r'^step2/$', views.step2, {'template_name': 'tatakelola/step2.html'}, 'step2'),
     url(r'^step3/$', views.step3, {'template_name': 'tatakelola/step3.html'}, 'step3'),

@@ -1,6 +1,8 @@
 from django.db import models
 from django.contrib.auth.models import User
 from django.template.defaultfilters import slugify
+from django.db.models.signals import post_save
+from django.dispatch import receiver
 
 
 KATEGORI_APLIKASI = (
@@ -95,13 +97,25 @@ class Monitor(models.Model):
 	mekanisme_internal = models.TextField()
 	mekanisme_eksternal = models.TextField()
 
-class User(models.Model):
-	user_id = models.CharField(max_length=32)
+class UserProfile(models.Model):
+	id_pegawai = models.CharField(max_length=32)
+	user = models.OneToOneField(User, on_delete=models.CASCADE, null=True)
 	nama = models.CharField(max_length=32)
 	usermane = models.CharField(max_length=32)
+	no_hp = models.CharField(max_length=15)
+	golongan = models.CharField(max_length=4)
+	alamat = models.TextField()
 	NIP = models.CharField(max_length=16)
 	jenis_user= models.CharField(max_length=32, choices=JENIS_USER)
 	image = models.ImageField(null=True, blank=True)
+
+	def __str__(self):
+		return self.nama
+
+@receiver(post_save, sender=User)
+def create_user_profile(sender, instance, created, **kwargs):
+    if created:
+        UserProfile.objects.create(user=instance)
 
 class Section(models.Model):
 	name = models.CharField(max_length = 50)

@@ -58,3 +58,18 @@ def section(request):
 
 
     return render(request, 'tatakelola/bantuan.html', context_dict)
+
+def notifications(request, template_name):
+    if request.user.is_authenticated:
+        notifs = request.user.notifications.unread()
+        context = {'notifs': notifs}
+        return render(request, template_name, context)
+    else:
+        return redirect('/')
+
+def notifications_mark_all_as_read(request):
+    if request.user.is_authenticated:
+        request.user.notifications.mark_all_as_read()
+        return redirect('/comment_filter/notifications/')
+    else:
+        return redirect('/')

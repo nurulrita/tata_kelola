@@ -19,4 +19,5 @@ from django.contrib import admin
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url('^', include('tatakelola.urls', namespace='tatakelola')),
+    url('^notifications/', include('notifications.urls', namespace='notifications')),
 ]

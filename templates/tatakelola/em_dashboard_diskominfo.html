@@ -10,42 +10,47 @@
 
             <div class="col-md-6">
                 <p>Total proyek: 2</p>
-                <div class="form-group">
-                    <label class="control-label" for="id_opd">
-                        OPD
-                    </label>
-                    <select class="form-control" id="id_opd" name="opd" title="" required="">
-                        <option value="" selected="selected">---------</option>
-                        <option value="PP">Dinas Kebakaran</option>
-                        <option value="MI">Dinas Pendidikan</option>
-                    </select>
-                </div>
+                {% if request.user.is_staff %}
+                    <div class="form-group">
+                        <label class="control-label" for="id_opd">
+                            OPD
+                        </label>
+                        <select class="form-control" id="id_opd" name="opd" title="" required="">
+                            <option value="" selected="selected">---------</option>
+                            <option value="PP">Dinas Kebakaran</option>
+                            <option value="MI">Dinas Pendidikan</option>
+                        </select>
+                    </div>
+                {% endif %}
             </div>
 
         </div>
-        <div class="row">
-            <table class="table table-bordered table-striped">
-                <thead>
-                    <tr>
-                        <th>Nama OPD</th>
-                        <th>Nama Proyek</th>
-                        <th>Tanggal Terakhir Update</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>Dinas Pemadam Kebakaran</td>
-                        <td>Aplikasi Monitoring Kebakaran</td>
-                        <td>20 Maret 2017</td>
-                    </tr>
-                    <tr>
-                        <td>Dinas Pendidikan</td>
-                        <td>Aplikasi Pintar</td>
-                        <td>22 April 2017</td>
-                    </tr>
+        
+            <div class="row">
+                <table class="table table-bordered table-striped">
+                    <thead>
+                        <tr>
+                        {% if request.user.is_staff %}
+                            <th>Nama OPD</th>
+                        {% endif %}
+                            <th>Nama Proyek</th>
+                            <th>Tanggal Terakhir Update</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        
+                        <tr>
+                        {% if request.user.is_staff %}
+                            <td>Dinas Pemadam Kebakaran</td>
+                        {% endif %}
+                            <td>Aplikasi Monitoring Kebakaran</td>
+                            <td>20 Maret 2017</td>
+                        </tr>
+                        
 
-                </tbody>
-            </table>
-        </div>
+                    </tbody>
+                </table>
+            </div>
+        
 
 {% endblock %}

@@ -21,14 +21,18 @@
                 <br><span style="font-size: 20px">Notifikasi</span>
             </a>
             </div>
+            
+            {% if request.user.is_staff %}
+                <div class="col-md-4">
+                <a href="{% url 'tatakelola:user_dashboard' %}">
+                    <i class="fa fa-user-circle fa-5" style="font-size: 12em;" aria-hidden="true"></i>
+                    <br><span style="font-size: 20px">User</span>
+                </a>
+                </div>
+            {% endif %}
+                
             <div class="col-md-4">
-            <a href="{% url 'tatakelola:user' %}">
-                <i class="fa fa-user-circle fa-5" style="font-size: 12em;" aria-hidden="true"></i>
-                <br><span style="font-size: 20px">User</span>
-            </a>
-            </div>
-            <div class="col-md-4">
-            <a href="{% url 'tatakelola:kebijakan_dashboard1' %}">
+            <a href="{% url 'tatakelola:kebijakan_dashboard' %}">
                 <i class="fa fa-file-text fa-5" style="font-size: 12em;" aria-hidden="true"></i>
                 <br><span style="font-size: 20px">Kebijakan</span>
             </a>
@@ -41,7 +45,7 @@
             </a>
             </div>
             <div class="col-md-4">
-            <a href="{% url 'tatakelola:evaluasiMonitoring_dashboard1' %}">
+            <a href="{% url 'tatakelola:evaluasiMonitoring_dashboard' %}">
                 <i class="fa fa-check-square fa-5" style="font-size: 12em;" aria-hidden="true"></i>
                 <br><span style="font-size: 20px">Evaluasi dan Monitoring</span>
             </a>

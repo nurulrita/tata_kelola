@@ -1,27 +1,29 @@
 {% extends "base_tatakelola.html" %}
 
 {% block breadcrumb_menu %}
-    <a href="{% url 'tatakelola:home' %}">Home / Kebijakan
+    <a href="{% url 'tatakelola:home' %}">Home</a> / Kebijakan
 {% endblock %}
 {% block main %}
 
         <div class="row">
             <h2 class="text-center">Dashboard Kebijakan</h2>
 
-            <div class="col-md-6">
-                <a href ="{% url 'tatakelola:step1' %}""><button type="button" class="btn">Buat Usulan Kebijakan Baru</button></p></a>
-                <p>Total proyek: 2</p>
-                <div class="form-group">
-                    <label class="control-label" for="id_kategori_aplikasi">
-                        Langkah Terakhir
-                    </label>
-                    <select class="form-control" id="id_kategori_aplikasi" name="kategori_aplikasi" title="" required="">
-                        <option value="" selected="selected">---------</option>
-                        <option value="PP">Perencanaan Sistem</option>
-                        <option value="MI">Manajemen Belanja</option>
-                    </select>
+            {% if request.user.is_staff %}
+                <div class="col-md-6">
+                    <a href ="{% url 'tatakelola:kebijakan' %}""><button type="button" class="btn">Buat Usulan Kebijakan Baru</button></p></a>
+                    <p>Total proyek: 2</p>
+                    <div class="form-group">
+                        <label class="control-label" for="id_kategori_aplikasi">
+                            Langkah Terakhir
+                        </label>
+                        <select class="form-control" id="id_kategori_aplikasi" name="kategori_aplikasi" title="" required="">
+                            <option value="" selected="selected">---------</option>
+                            <option value="PP">Perencanaan Sistem</option>
+                            <option value="MI">Manajemen Belanja</option>
+                        </select>
+                    </div>
                 </div>
-            </div>
+            {% endif %}
 
         </div>
         <div class="row">

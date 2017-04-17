@@ -7,7 +7,7 @@
 <link rel="stylesheet" href="{% static 'css/step.css' %}">
 {% endblock %}
 {% block breadcrumb_menu %}
-    <a href="{% url 'tatakelola:home' %}">Home</a> / <a href="{% url 'tatakelola:evaluasiMonitoring_dashboard1' %}"> Evaluasi per Tahun</a> / Buat Baru Evaluasi dan Monitoring
+    <a href="{% url 'tatakelola:home' %}">Home</a> / <a href="{% url 'tatakelola:evaluasiMonitoring_dashboard' %}"> Evaluasi dan Monitoring </a> / Buat Baru Evaluasi dan Monitoring
 {% endblock %}
 {% include "tatakelola/step_base.html"%}
 
@@ -18,14 +18,17 @@
             <div class="col-md-6">
                 {% bootstrap_form form %}
 
-                <button type="button" class="btn btn-success">Accept</button>
-                <button type="button" class="btn btn-danger">Decline</button>
-                <button type="button" class="btn btn-warning">Feedback</button>
-            <div class="col-md-6">
+                {% if request.user.is_staff %}
+                    <!--kominfo-->
+                    <button type="button" class="btn btn-success">Accept</button>
+                    <button type="button" class="btn btn-danger">Decline</button>
+                    <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#feedbackModal">Feedback</button>
+                {% else %}
+                    <button type="button" class="btn btn-success">Save</button>
+                    <button type="button" class="btn btn-warning">Save as Draft</button>
+
+                {% endif %}
             </div>
-
-
-
         </div>
 
 {% endblock %}

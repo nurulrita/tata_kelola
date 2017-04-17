@@ -1,7 +1,7 @@
 {% extends "base_tatakelola.html" %}
 
 {% block breadcrumb_menu %}
-    <a href="{% url 'tatakelola:home' %}">Home</a> / <a href="{% url 'tatakelola:evaluasiMonitoring_dashboard1' %}"> Evaluasi per Tahun</a>
+    <a href="{% url 'tatakelola:home' %}">Home</a> / <a href="{% url 'tatakelola:evaluasiMonitoring_dashboard' %}"> Evaluasi dan Monitoring</a> / Evaluasi Per Tahun
 {% endblock %}
 {% block main %}
 
@@ -13,14 +13,18 @@
             <table class="table table-bordered table-striped">
                 <thead>
                     <tr>
+                    {% if request.user.is_staff %}
                         <th>Nama OPD</th>
+                    {% endif %}
                         <th>Tahun</th>
                         <th>Tanggal Terakhir Update</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
+                    {% if request.user.is_staff %}
                         <td>Dinas Pemadam Kebakaran</td>
+                    {% endif %}
                         <td>2017</td>
                         <td>20 Maret 2017</td>
                     </tr>

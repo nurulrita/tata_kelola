@@ -12,32 +12,34 @@
                 <p>Total proyek: 2</p>
             </div>
 
-            <div class="col-md-6">
-                
-                <div class="form-group">
-                    <label class="control-label" for="id_opd">
-                        OPD
-                    </label>
-                    <select class="form-control" id="id_opd" name="opd" title="" required="">
-                        <option value="" selected="selected">---------</option>
-                        <option value="PP">Dinas Kebakaran</option>
-                        <option value="MI">Dinas Pendidikan</option>
-                    </select>
+            {% if request.user.is_staff %}
+                <div class="col-md-6">
+                    
+                    <div class="form-group">
+                        <label class="control-label" for="id_opd">
+                            OPD
+                        </label>
+                        <select class="form-control" id="id_opd" name="opd" title="" required="">
+                            <option value="" selected="selected">---------</option>
+                            <option value="PP">Dinas Kebakaran</option>
+                            <option value="MI">Dinas Pendidikan</option>
+                        </select>
+                    </div>
                 </div>
-            </div>
 
-            <div class="col-md-6">
-                <div class="form-group">
-                    <label class="control-label" for="id_kategori_aplikasi">
-                        Langkah Terakhir
-                    </label>
-                    <select class="form-control" id="id_kategori_aplikasi" name="kategori_aplikasi" title="" required="">
-                        <option value="" selected="selected">---------</option>
-                        <option value="PP">Perencanaan Sistem</option>
-                        <option value="MI">Manajemen Belanja</option>
-                    </select>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label class="control-label" for="id_kategori_aplikasi">
+                            Langkah Terakhir
+                        </label>
+                        <select class="form-control" id="id_kategori_aplikasi" name="kategori_aplikasi" title="" required="">
+                            <option value="" selected="selected">---------</option>
+                            <option value="PP">Perencanaan Sistem</option>
+                            <option value="MI">Manajemen Belanja</option>
+                        </select>
+                    </div>
                 </div>
-            </div>
+            {% endif %}
 
         </div>
         <div class="row">

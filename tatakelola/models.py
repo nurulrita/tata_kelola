@@ -26,6 +26,7 @@ class Proyek(models.Model):
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
     opd = models.ForeignKey(User)
+    status = models.CharField(max_length = 9)
 
 
 class Step1(models.Model):
@@ -78,6 +79,8 @@ class Step5 (models.Model):
     siklus_hidup_likuidasi_sdit = models.TextField()
 
 class Kebijakan(models.Model):
+	nama_perwal = models.CharField(max_length=128)
+	no_perwal = models.CharField(max_length=128)
 	proyek = models.ForeignKey(Proyek)
 	risiko_proyek = models.TextField()
 	risiko_informasi = models.TextField()
@@ -92,30 +95,32 @@ class Kebijakan(models.Model):
 	efisiensi_finansial = models.TextField()
 	file = models.FileField()
 
-class Monitor(models.Model):
+class EvaluasidanMonitor(models.Model):
+	opd = models.ForeignKey(User)
+	proyek = models.ForeignKey(Proyek, null=True)
 	tahun = models.IntegerField()
 	mekanisme_internal = models.TextField()
 	mekanisme_eksternal = models.TextField()
 
 class UserProfile(models.Model):
 	id_pegawai = models.CharField(max_length=32)
-	user = models.OneToOneField(User, on_delete=models.CASCADE, null=True)
+	user = models.OneToOneField(User, null=True, blank=True)
 	nama = models.CharField(max_length=32)
 	usermane = models.CharField(max_length=32)
 	no_hp = models.CharField(max_length=15)
 	golongan = models.CharField(max_length=4)
 	alamat = models.TextField()
-	NIP = models.CharField(max_length=16)
+	NIP = models.CharField(max_length=18)
 	jenis_user= models.CharField(max_length=32, choices=JENIS_USER)
 	image = models.ImageField(null=True, blank=True)
 
 	def __str__(self):
 		return self.nama
 
-@receiver(post_save, sender=User)
-def create_user_profile(sender, instance, created, **kwargs):
-    if created:
-        UserProfile.objects.create(user=instance)
+# @receiver(post_save, sender=User)
+# def create_user_profile(sender, instance, created, **kwargs):
+#     if created:
+#         UserProfile.objects.create(user=instance)
 
 class Section(models.Model):
 	name = models.CharField(max_length = 50)

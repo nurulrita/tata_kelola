@@ -6,7 +6,7 @@
 {% block main %}
 
         <div class="row">
-            <h2 class="text-center">Dashboard Evaluasi dan Monitoring</h2> <br />
+            <h2 class="text-center">Evaluasi dan Monitoring</h2> <br />
 
         </div>
         <div class="row">
@@ -17,17 +17,21 @@
                         <th>Nama OPD</th>
                     {% endif %}
                         <th>Tahun</th>
-                        <th>Tanggal Terakhir Update</th>
+                        <th>Terakhir Update</th>
+                        <th>Isi</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                    {% if request.user.is_staff %}
-                        <td>Dinas Pemadam Kebakaran</td>
-                    {% endif %}
-                        <td>2017</td>
-                        <td>20 Maret 2017</td>
-                    </tr>
+                    {% for evmontahun in emonitor %}
+                        <tr>
+                        {% if request.user.is_staff %}
+                            <td><a href = "#">{{evmontahun.opd}}</a></td>
+                        {% endif %}
+                            <td>{{evmontahun.tahun}}</td>
+                            <td>{{evmontahun.proyek.updated}}</td>
+                            <td><a href = "{% url 'tatakelola:monitoring' evmontahun.id %}">Lihat</a></td>
+                        </tr>
+                    {% endfor %}
 
                 </tbody>
             </table>

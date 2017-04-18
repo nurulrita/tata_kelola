@@ -1,20 +1,16 @@
 {% extends "base_tatakelola.html" %}
 
 {% block breadcrumb_menu %}
-    <a href="{% url 'tatakelola:home' %}">Home</a> / <a>Proyek</a>
+    <a href="{% url 'tatakelola:home' %}">Home</a> / Proyek
 {% endblock %}
 {% block main %}
 
         <div class="row">
             <h2 class="text-center">Dashboard Proyek</h2>
-            <div class="col-md-12">
-                <a href ="{% url 'tatakelola:step1' %}""><button type="button" class="btn">Buat Proyek Baru</button></p></a>
-                <p>Total proyek: 2</p>
-            </div>
 
             {% if request.user.is_staff %}
                 <div class="col-md-6">
-                    
+                        
                     <div class="form-group">
                         <label class="control-label" for="id_opd">
                             OPD
@@ -39,6 +35,25 @@
                         </select>
                     </div>
                 </div>
+
+            {% else %}
+                <div class="col-md-12">
+                    <a href ="{% url 'tatakelola:step1' %}""><button type="button" class="btn">Buat Proyek Baru</button></p></a>
+                    <p>Total proyek: 2</p>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label class="control-label" for="id_kategori_aplikasi">
+                            Langkah Terakhir
+                        </label>
+                        <select class="form-control" id="id_kategori_aplikasi" name="kategori_aplikasi" title="" required="">
+                            <option value="" selected="selected">---------</option>
+                            <option value="PP">Perencanaan Sistem</option>
+                            <option value="MI">Manajemen Belanja</option>
+                        </select>
+                    </div>
+                </div>
             {% endif %}
 
         </div>
@@ -49,25 +64,22 @@
                         <th>No</th>
                         <th>Nama Proyek</th>
                         <th>Langkah Terakhir</th>
+                        <th>Tanggal Pembuatan</th>
                         <th>Status</th>
-                        <th>Tanggal Terakhir Update</th>
+                        <th>Terakhir Update</th>
                     </tr>
                 </thead>
                 <tbody>
+                {% for proyek_ in proyek %}
                     <tr>
                         <th scope="row">1</th>
-                        <td>Aplikasi Monitoring Kebakaran</td>
-                        <td>Perencanaan Proyek</td>
-                        <td>Disetujui</td>
-                        <td>20 Maret 2017</td>
+                        <td><a href = "#">{{proyek_.nama_proyek}}</a></td>
+                        <td>{{proyek_.latest_step}}</td>
+                        <td>{{proyek_.created}}</td>
+                        <td>{{proyek_.status}}</td>
+                        <td>{{proyek_.updated}}</td>
                     </tr>
-                    <tr>
-                        <th scope="row">2</th>
-                        <td>Aplikasi Lapor Lapar</td>
-                        <td>Manajemen Belanja</td>
-                        <td>Menunggu Persetujuan</td>
-                        <td>12 Maret 2017</td>
-                    </tr>
+                {% endfor %}
 
                 </tbody>
             </table>

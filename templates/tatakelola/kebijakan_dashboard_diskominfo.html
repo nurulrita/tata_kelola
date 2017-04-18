@@ -13,13 +13,13 @@
                     <a href ="{% url 'tatakelola:kebijakan' %}""><button type="button" class="btn">Buat Usulan Kebijakan Baru</button></p></a>
                     <p>Total proyek: 2</p>
                     <div class="form-group">
-                        <label class="control-label" for="id_kategori_aplikasi">
-                            Langkah Terakhir
+                        <label class="control-label" for="id_opd">
+                            OPD
                         </label>
-                        <select class="form-control" id="id_kategori_aplikasi" name="kategori_aplikasi" title="" required="">
+                        <select class="form-control" id="id_opd" name="opd" title="" required="">
                             <option value="" selected="selected">---------</option>
-                            <option value="PP">Perencanaan Sistem</option>
-                            <option value="MI">Manajemen Belanja</option>
+                            <option value="PP">Dinas Kebakaran</option>
+                            <option value="MI">Dinas Pendidikan</option>
                         </select>
                     </div>
                 </div>
@@ -30,7 +30,6 @@
             <table class="table table-bordered table-striped">
                 <thead>
                     <tr>
-                        <th>No</th>
                         <th>Nomor Perwal</th>
                         <th>Nama Perwal</th>
                         <th>Proyek</th>
@@ -38,20 +37,15 @@
                     </tr>
                 </thead>
                 <tbody>
+                    {% for bijak in kebijakan %}
                     <tr>
-                        <th scope="row">1</th>
-                        <td>Aplikasi Monitoring Kebakaran</td>
-                        <td>Perencanaan Proyek</td>
-                        <td>Disetujui</td>
-                        <td>20 Maret 2017</td>
+                        <td>{{bijak.no_perwal}}</td>
+                        <td>{{bijak.nama_perwal}}</td>
+                        <td>{{bijak.proyek.nama_proyek}}</td>
+                        <td><a href="{{bijak.file.url}}"> Lihat </a></td>
                     </tr>
-                    <tr>
-                        <th scope="row">2</th>
-                        <td>Aplikasi Lapor Lapar</td>
-                        <td>Manajemen Belanja</td>
-                        <td>Menunggu Persetujuan</td>
-                        <td>12 Maret 2017</td>
-                    </tr>
+                    {% endfor %}
+                    
 
                 </tbody>
             </table>

@@ -1,7 +1,47 @@
-from django.shortcuts import render
+from django.shortcuts import redirect, render
+from django.contrib.auth.decorators import login_required
 
 from .forms import KebijakanForm, MonitorForm, Step1Form, Step2Form, Step3Form, Step4Form, Step5Form, UserForm
-from .models import QuestionAnswer, Section
+from .models import QuestionAnswer, Section, Kebijakan, Proyek, UserProfile, EvaluasidanMonitor
+
+
+@login_required
+def kebijakan_dashboard(request, template_name):
+	kebijakan = Kebijakan.objects.all()
+	context = {'kebijakan': kebijakan}
+	return render(request, template_name, context)
+
+@login_required
+def proyek_dashboard(request, template_name):
+	proyek = Proyek.objects.all()
+	context = {'proyek' : proyek}
+	return render(request, template_name, context)
+
+@login_required
+def user_dashboard(request, template_name):
+    userprofile = UserProfile.objects.all()
+    context = {'userprofile': userprofile}
+    return render(request, template_name, context)
+
+@login_required
+def emonitor(request, template_name):
+    emonitor = EvaluasidanMonitor.objects.all()
+    context = {'emonitor': emonitor}
+    return render(request, template_name, context)
+
+@login_required
+def emonitorperTahun(request, template_name, id):
+    emonitor = EvaluasidanMonitor.objects.filter(proyek__id=id)
+    context = {'emonitor': emonitor}
+    return render(request, template_name, context)
+
+@login_required
+def emonitor_(request, template_name, id):
+    emonitor = EvaluasidanMonitor.objects.get(id=id)
+    form = MonitorForm(instance=emonitor)
+    context = {'form': form}
+    return render(request, template_name, context)
+
 
 def step1(request, template_name):
     form = Step1Form()
@@ -33,16 +73,13 @@ def kebijakan(request, template_name):
     context = {'form': form}
     return render(request, template_name, context)
 
-def monitor(request, template_name):
-    form = MonitorForm()
-    context = {'form': form}
-    return render(request, template_name, context)
 
 def user(request, template_name):
     form = UserForm()
     context = {'form': form}
     return render(request, template_name, context)
 
+@login_required
 def section(request):
 
     context_dict = {}
@@ -59,17 +96,15 @@ def section(request):
 
     return render(request, 'tatakelola/bantuan.html', context_dict)
 
+@login_required
 def notifications(request, template_name):
-    if request.user.is_authenticated:
-        notifs = request.user.notifications.unread()
-        context = {'notifs': notifs}
-        return render(request, template_name, context)
-    else:
-        return redirect('/')
+    notifs = request.user.notifications.unread()
+    context = {'notifs': notifs}
+    return render(request, template_name, context)
+    
 
-def notifications_mark_all_as_read(request):
-    if request.user.is_authenticated:
-        request.user.notifications.mark_all_as_read()
-        return redirect('/comment_filter/notifications/')
-    else:
-        return redirect('/')
+@login_required
+def notifications_mark_all_as_read(request): 
+    request.user.notifications.mark_all_as_read()
+    return redirect('/comment_filter/notifications/')
+   

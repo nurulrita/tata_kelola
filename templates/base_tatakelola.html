@@ -52,17 +52,22 @@
 				<!--{% block navbar_search_form %}{% endblock %}-->
 				<!--{% block navbar_dropdown_menu %}{% endblock%}-->
 				<ul class="nav navbar-nav navbar-right">
+                    {% if request.user.is_staff %}
+	                    <li>
+	                        <a href="{% url 'tatakelola:user_dashboard' %}">User</a>
+	                    </li>
+	                    {% endif %}
                     <li>
-                        <a href="">Kebijakan</a>
+                        <a href="{% url 'tatakelola:kebijakan_dashboard' %}">Kebijakan</a>
                     </li>
                     <li>
-                        <a href="">Proyek</a>
+                        <a href="{% url 'tatakelola:proyek_dashboard' %}">Proyek</a>
                     </li>
                     <li>
-                        <a href="">Evaluasi dan Monitoring</a>
+                        <a href="{% url 'tatakelola:evaluasiMonitoring_dashboard' %}">Evaluasi dan Monitoring</a>
                     </li>
                     <li>
-                        <a href="">Bantuan</a>
+                        <a href="{% url 'tatakelola:bantuan' %}">Bantuan</a>
                     </li>
                     <li>
                         <a href="">Keluar</a>

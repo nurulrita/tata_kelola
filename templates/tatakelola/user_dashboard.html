@@ -34,18 +34,14 @@
                     </tr>
                 </thead>
                 <tbody>
+                {% for user_ in userprofile %}
                     <tr>
-                        <td>12345678</td>
-                        <td>197609192006041004</td>
-                        <td>Budi</td>
-                        <td>OPD</td>
+                        <td><a href = "{% url 'tatakelola:user' %}">{{user_.id_pegawai}}</a></td>
+                        <td>{{user_.NIP}}</td>
+                        <td>{{user_.nama}}</td>
+                        <td>{{user_.jenis_user}}</td>
                     </tr>
-                    <tr>
-                        <td>23456789</td>
-                        <td>197709272006042005</td>
-                        <td>Dewi</td>
-                        <td>Diskominfo</td>
-                    </tr>
+                {% endfor %}
 
                 </tbody>
             </table>

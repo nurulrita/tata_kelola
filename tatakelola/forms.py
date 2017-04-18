@@ -1,6 +1,6 @@
 from django import forms
 
-from .models import Kebijakan, Monitor, Proyek, Step1, Step2, Step3, Step4, Step5, User
+from .models import EvaluasidanMonitor, Kebijakan, Proyek, Step1, Step2, Step3, Step4, Step5, User
 
 
 class KebijakanForm(forms.ModelForm):
@@ -40,7 +40,7 @@ class Step5Form(forms.ModelForm):
 
 class MonitorForm(forms.ModelForm):
     class Meta:
-        model = Monitor
+        model = EvaluasidanMonitor
         exclude = ('proyek',)
 
 class UserForm(forms.ModelForm):

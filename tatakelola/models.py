@@ -20,13 +20,26 @@ JENIS_USER = (
 	('KOM', 'Diskominfo')
 )
 
+STATUS = (
+    ('T', 'Diterima'),
+    ('DT', 'Ditolak')
+)
+
+LATEST_STEP = (
+    ('PS', 'Perencanaan Sistem'),
+    ('MB', 'Manajemen Belanja'),
+    ('RS', 'Realisasi Sistem'),
+    ('OS', 'Pengoperasian Sistem'),
+    ('MS', 'Pemeliharaan Sistem')
+)
+
 class Proyek(models.Model):
     nama_proyek = models.CharField(max_length = 128)
-    latest_step = models.CharField(max_length=32)
+    latest_step = models.CharField(max_length=32, choices=LATEST_STEP)
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
     opd = models.ForeignKey(User)
-    status = models.CharField(max_length = 9)
+    status = models.CharField(max_length = 9, choices=STATUS)
 
 
 class Step1(models.Model):

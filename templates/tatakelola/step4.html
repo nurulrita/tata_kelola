@@ -7,7 +7,7 @@
 <link rel="stylesheet" href="{% static 'css/step.css' %}">
 {% endblock %}
 {% block breadcrumb_menu %}
-    a href="{% url 'tatakelola:home' %}">Home</a> / <a>Proyek</a>
+    <a href="{% url 'tatakelola:home' %}">Home</a> / <a href="{% url 'tatakelola:proyek_dashboard' %}">Proyek</a> / <a href="{% url 'tatakelola:step1' %}">Step1 </a> / <a href="{% url 'tatakelola:step2' %}">Step2 </a>/ <a href="{% url 'tatakelola:step3' %}">Step3</a> / Step4
 {% endblock %}
 {% include "tatakelola/step_base.html"%}
 

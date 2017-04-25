@@ -25,13 +25,16 @@
 
                 <div class="col-md-6">
                     <div class="form-group">
-                        <label class="control-label" for="id_kategori_aplikasi">
+                        <label class="control-label" for="id_latest_step"> 
                             Langkah Terakhir
                         </label>
-                        <select class="form-control" id="id_kategori_aplikasi" name="kategori_aplikasi" title="" required="">
+                        <select class="form-control" id="id_latest_step" name="latest_step" title="" required="">
                             <option value="" selected="selected">---------</option>
-                            <option value="PP">Perencanaan Sistem</option>
-                            <option value="MI">Manajemen Belanja</option>
+                            <option value="PS">Perencanaan Sistem</option>
+                            <option value="MB">Manajemen Belanja</option>
+                            <option value="RS">Realisasi Sistem</option>
+                            <option value="OS">Pengoperasian Sistem</option>
+                            <option value="MS">Pemeliharaan Sistem</option>
                         </select>
                     </div>
                 </div>
@@ -44,13 +47,16 @@
 
                 <div class="col-md-6">
                     <div class="form-group">
-                        <label class="control-label" for="id_kategori_aplikasi">
+                        <label class="control-label" for="id_latest_step"> 
                             Langkah Terakhir
                         </label>
-                        <select class="form-control" id="id_kategori_aplikasi" name="kategori_aplikasi" title="" required="">
+                        <select class="form-control" id="id_latest_step" name="latest_step" title="" required="">
                             <option value="" selected="selected">---------</option>
-                            <option value="PP">Perencanaan Sistem</option>
-                            <option value="MI">Manajemen Belanja</option>
+                            <option value="PS">Perencanaan Sistem</option>
+                            <option value="MB">Manajemen Belanja</option>
+                            <option value="RS">Realisasi Sistem</option>
+                            <option value="OS">Pengoperasian Sistem</option>
+                            <option value="MS">Pemeliharaan Sistem</option>
                         </select>
                     </div>
                 </div>
@@ -74,9 +80,9 @@
                     <tr>
                         <th scope="row">1</th>
                         <td><a href = "#">{{proyek_.nama_proyek}}</a></td>
-                        <td>{{proyek_.latest_step}}</td>
+                        <td>{{proyek_.get_latest_step_display}}</td>
                         <td>{{proyek_.created}}</td>
-                        <td>{{proyek_.status}}</td>
+                        <td>{{proyek_.get_status_display}}</td>
                         <td>{{proyek_.updated}}</td>
                     </tr>
                 {% endfor %}

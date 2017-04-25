@@ -11,6 +11,14 @@ def kebijakan_dashboard(request, template_name):
 	context = {'kebijakan': kebijakan}
 	return render(request, template_name, context)
 
+def lihat_kebijakan(request, template_name, id):
+    kebijakan = Kebijakan.objects.get(id=id)
+    form = KebijakanForm(instance=kebijakan)
+    for name, field in form.fields.items():
+    	field.disabled = True
+    context = {'form': form}
+    return render(request, template_name, context)
+
 @login_required
 def proyek_dashboard(request, template_name):
 	proyek = Proyek.objects.all()
@@ -40,32 +48,50 @@ def emonitor_(request, template_name, id):
     emonitor = EvaluasidanMonitor.objects.get(id=id)
     form = MonitorForm(instance=emonitor)
     context = {'form': form}
+    if request.user.is_staff:
+    	for name, field in form.fields.items():
+    		field.disabled = True
     return render(request, template_name, context)
 
 
 def step1(request, template_name):
     form = Step1Form()
     context = {'form': form}
+    if request.user.is_staff:
+    	for name, field in form.fields.items():
+    		field.disabled = True
     return render(request, template_name, context)
 
 def step2(request, template_name):
     form = Step2Form()
     context = {'form': form}
+    if request.user.is_staff:
+    	for name, field in form.fields.items():
+    		field.disabled = True
     return render(request, template_name, context)
 
 def step3(request, template_name):
     form = Step3Form()
     context = {'form': form}
+    if request.user.is_staff:
+    	for name, field in form.fields.items():
+    		field.disabled = True
     return render(request, template_name, context)
 
 def step4(request, template_name):
     form = Step4Form()
     context = {'form': form}
+    if request.user.is_staff:
+    	for name, field in form.fields.items():
+    		field.disabled = True
     return render(request, template_name, context)
 
 def step5(request, template_name):
     form = Step5Form()
     context = {'form': form}
+    if request.user.is_staff:
+    	for name, field in form.fields.items():
+    		field.disabled = True
     return render(request, template_name, context)
 
 def kebijakan(request, template_name):

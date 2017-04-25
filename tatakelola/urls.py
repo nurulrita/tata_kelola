@@ -22,6 +22,8 @@ urlpatterns =[
     url(r'^kebijakan_dashboard/$', views.kebijakan_dashboard, 
     	{'template_name' : 'tatakelola/kebijakan_dashboard_diskominfo.html'}, 
     	'kebijakan_dashboard'),
+    url(r'^lihat_kebijakan/(?P<id>\d+)/$', views.lihat_kebijakan, 
+    	{'template_name' : 'tatakelola/kebijakanform.html'}, 'lihat_kebijakan'),
     url(r'^kebijakan/$', views.kebijakan, 
     	{'template_name': 'tatakelola/kebijakanform.html'}, 'kebijakan'),
     url(r'^evaluasiMonitoring_dashboard/$', views.emonitor, 

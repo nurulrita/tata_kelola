@@ -19,37 +19,45 @@
         <div class="row">
             <div class="col-md-6">
                 {% bootstrap_form form %}
-
+                {% if request.user.is_staff %}
+                <!--kominfo-->
                 <button type="button" class="btn btn-success">Accept</button>
                 <button type="button" class="btn btn-danger">Decline</button>
                 <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#feedbackModal">Feedback</button>
 
-            </div>
-            <div class="col-md-6">
+                {% else %}
+
+                <button type="button" class="btn btn-success">Save</button>
+                <button type="button" class="btn btn-warning">Save as Draft</button>
+
+                <div class="row" style="margin-top: 50px">
+                    <table class="table table-bordered table-striped">
+                        <thead>
+                            <tr>
+                                <th>No</th>
+                                <th>Tanggal</th>
+                                <th>Pemberi Feedback</th>
+                                <th>Feedback</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <th scope="row">1</th>
+                                <td>30/09/2017</td>
+                                <td>Arief (197710192006041004)</td>
+                                <td>Arsitektur tidak masuk akal</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                {% endif %}
+
             </div>
 
         </div>
-        <div class="row" style="margin-top: 50px">
-            <table class="table table-bordered table-striped">
-                <thead>
-                    <tr>
-                        <th>No</th>
-                        <th>Tanggal</th>
-                        <th>Pemberi Feedback</th>
-                        <th>Feedback</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <th scope="row">1</th>
-                        <td>30/09/2017</td>
-                        <td>Arief (197710192006041004)</td>
-                        <td>Arsitektur tidak masuk akal</td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
 
+            
         {% include "tatakelola/feedback.html" %}
 
 {% endblock %}

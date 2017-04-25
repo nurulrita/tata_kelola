@@ -33,7 +33,7 @@
                         <th>Nomor Perwal</th>
                         <th>Nama Perwal</th>
                         <th>Proyek</th>
-                        <th>Isi</th>
+                        <th>Action</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -42,7 +42,10 @@
                         <td>{{bijak.no_perwal}}</td>
                         <td>{{bijak.nama_perwal}}</td>
                         <td>{{bijak.proyek.nama_proyek}}</td>
-                        <td><a href="{{bijak.file.url}}"> Lihat </a></td>
+                        <td>
+                            <a href="{% url 'tatakelola:lihat_kebijakan' bijak.id %}"> Lihat </a><br>
+                            <a href="{{bijak.file.url}}"> Download </a><br>
+                        </td>
                     </tr>
                     {% endfor %}
                     

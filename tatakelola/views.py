@@ -54,6 +54,7 @@ def emonitor_(request, template_name, id):
     return render(request, template_name, context)
 
 
+@login_required
 def step1(request, template_name):
     form = Step1Form()
     context = {'form': form}
@@ -62,6 +63,7 @@ def step1(request, template_name):
     		field.disabled = True
     return render(request, template_name, context)
 
+@login_required
 def step2(request, template_name):
     form = Step2Form()
     context = {'form': form}
@@ -70,6 +72,7 @@ def step2(request, template_name):
     		field.disabled = True
     return render(request, template_name, context)
 
+@login_required
 def step3(request, template_name):
     form = Step3Form()
     context = {'form': form}
@@ -78,6 +81,7 @@ def step3(request, template_name):
     		field.disabled = True
     return render(request, template_name, context)
 
+@login_required
 def step4(request, template_name):
     form = Step4Form()
     context = {'form': form}
@@ -86,6 +90,7 @@ def step4(request, template_name):
     		field.disabled = True
     return render(request, template_name, context)
 
+@login_required
 def step5(request, template_name):
     form = Step5Form()
     context = {'form': form}
@@ -94,12 +99,14 @@ def step5(request, template_name):
     		field.disabled = True
     return render(request, template_name, context)
 
+@login_required
 def kebijakan(request, template_name):
     form = KebijakanForm()
     context = {'form': form}
     return render(request, template_name, context)
 
 
+@login_required
 def user(request, template_name):
     form = UserForm()
     context = {'form': form}
@@ -134,4 +141,7 @@ def notifications_mark_all_as_read(request):
     request.user.notifications.mark_all_as_read()
     return redirect('/comment_filter/notifications/')
 
-   
+@login_required
+def home(request, template_name):
+	context = {}
+	return render(request, template_name, context)

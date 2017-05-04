@@ -14,7 +14,7 @@ urlpatterns =[
     url(r'^step3/$', views.step3, {'template_name': 'tatakelola/step3.html'}, 'step3'),
     url(r'^step4/$', views.step4, {'template_name': 'tatakelola/step4.html'}, 'step4'),
     url(r'^step5/$', views.step5, {'template_name': 'tatakelola/step5.html'}, 'step5'),
-    url(r'^$', TemplateView.as_view(template_name="tatakelola/home.html"), {}, 'home'),
+    url(r'^$', views.home, {'template_name': 'tatakelola/home.html'}, 'home'),
     url(r'^user_dashboard/$', views.user_dashboard, {'template_name': 'tatakelola/user_dashboard.html'}, 'user_dashboard'),
     url(r'^user/$', views.user, {'template_name': 'tatakelola/userform.html'}, 'user'),
     url(r'^proyek_dashboard/$', views.proyek_dashboard,

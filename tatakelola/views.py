@@ -133,4 +133,5 @@ def notifications(request, template_name):
 def notifications_mark_all_as_read(request): 
     request.user.notifications.mark_all_as_read()
     return redirect('/comment_filter/notifications/')
+
    

@@ -46,4 +46,4 @@ class MonitorForm(forms.ModelForm):
 class UserForm(forms.ModelForm):
     class Meta:
         model = User
-        exclude = '__all__'
+        exclude = ('date_joined', 'last_login', 'is_superuser', 'user_permissions', 'groups', 'is_active',  )

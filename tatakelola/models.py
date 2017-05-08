@@ -94,7 +94,7 @@ class Step5 (models.Model):
 class Kebijakan(models.Model):
 	nama_perwal = models.CharField(max_length=128)
 	no_perwal = models.CharField(max_length=128)
-	proyek = models.ForeignKey(Proyek)
+	proyek = models.ForeignKey(Proyek, null=True)
 	risiko_proyek = models.TextField()
 	risiko_informasi = models.TextField()
 	risiko_keberlangsungan_layanan = models.TextField()

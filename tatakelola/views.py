@@ -1,5 +1,8 @@
-from django.shortcuts import redirect, render
+from django.shortcuts import redirect, render, get_object_or_404
 from django.contrib.auth.decorators import login_required
+from django.http import HttpResponseRedirect
+from django.urls import reverse
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 from .forms import KebijakanForm, MonitorForm, Step1Form, Step2Form, Step3Form, Step4Form, Step5Form, UserForm
 from .models import QuestionAnswer, Section, Kebijakan, Proyek, UserProfile, EvaluasidanMonitor
@@ -8,20 +11,47 @@ from .models import QuestionAnswer, Section, Kebijakan, Proyek, UserProfile, Eva
 @login_required
 def kebijakan_dashboard(request, template_name):
 	kebijakan = Kebijakan.objects.all()
+	paginator = Paginator(kebijakan, 2) # Show 2 contacts per page
+	page = request.GET.get('page')
+	try:
+		kebijakan = paginator.page(page)
+	except PageNotAnInteger:
+	# If page is not an integer, deliver first page.
+		kebijakan = paginator.page(1)
+	except EmptyPage:
+	# If page is out of range (e.g. 9999), deliver last page of results.
+		kebijakan = paginator.page(paginator.num_pages)
 	context = {'kebijakan': kebijakan}
 	return render(request, template_name, context)
 
 def lihat_kebijakan(request, template_name, id):
-    kebijakan = Kebijakan.objects.get(id=id)
+    kebijakan = get_object_or_404(Kebijakan, id=id)
     form = KebijakanForm(instance=kebijakan)
-    for name, field in form.fields.items():
-    	field.disabled = True
+    if request.method=="POST":
+    	form = KebijakanForm(request.POST,request.FILES, instance=kebijakan)
+    	if form.is_valid():
+    		form.save()
+    		return HttpResponseRedirect(reverse('tatakelola:kebijakan_dashboard'))
+    # kominfo bsa ngedit
+    if not request.user.is_staff:
+    	for name, field in form.fields.items():
+    		field.disabled = True
     context = {'form': form}
     return render(request, template_name, context)
 
 @login_required
 def proyek_dashboard(request, template_name):
 	proyek = Proyek.objects.all()
+	paginator = Paginator(proyek, 2) # Show 2 contacts per page
+	page = request.GET.get('page')
+	try:
+		proyek = paginator.page(page)
+	except PageNotAnInteger:
+	# If page is not an integer, deliver first page.
+		proyek = paginator.page(1)
+	except EmptyPage:
+	# If page is out of range (e.g. 9999), deliver last page of results.
+		proyek = paginator.page(paginator.num_pages)
 	context = {'proyek' : proyek}
 	return render(request, template_name, context)
 
@@ -101,9 +131,16 @@ def step5(request, template_name):
 
 @login_required
 def kebijakan(request, template_name):
-    form = KebijakanForm()
-    context = {'form': form}
-    return render(request, template_name, context)
+	if request.method=="POST":
+		form = KebijakanForm(request.POST,request.FILES)
+		if form.is_valid():
+			form.save()
+			return HttpResponseRedirect(reverse('tatakelola:kebijakan_dashboard'))
+	else:
+		form = KebijakanForm()
+
+	context = {'form': form}
+	return render(request, template_name, context)
 
 
 @login_required
@@ -145,3 +182,15 @@ def notifications_mark_all_as_read(request):
 def home(request, template_name):
 	context = {}
 	return render(request, template_name, context)
+
+def permission_denied(request):
+	return render (request, 'registration/403.html', {})
+
+def bad_request(request):
+	return render (request, 'registration/400.html', {})
+
+def page_not_found(request):
+	return render (request, 'registration/404.html', {})
+
+def server_error():
+	return render (request, 'registration/500.html', {})

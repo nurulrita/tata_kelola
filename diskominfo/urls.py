@@ -13,11 +13,18 @@ Including another URLconf
     1. Import the include() function: from django.conf.urls import url, include
     2. Add a URL to urlpatterns:  url(r'^blog/', include('blog.urls'))
 """
-from django.conf.urls import include, url
+from django.conf.urls import include, url, handler403, handler400, handler404, handler500
 from django.contrib import admin
+from django.conf import settings
+from django.conf.urls.static import static
 
 from django.contrib.auth import views
 from django.contrib.auth import views as auth_views
+
+handler403 = 'tatakelola.views.permission_denied'
+handler400 = 'tatakelola.views.bad_request'
+handler404 = 'tatakelola.views.page_not_found'
+handler500 = 'tatakelola.views.server_error'
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
@@ -31,3 +38,7 @@ urlpatterns = [
         auth_views.password_reset_confirm, name='password_reset_confirm'),
     url(r'^reset/done/$', auth_views.password_reset_complete, name='password_reset_complete'),
 ]
+
+if settings.DEBUG:
+	urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+	urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

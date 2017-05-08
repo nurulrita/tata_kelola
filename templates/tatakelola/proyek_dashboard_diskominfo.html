@@ -78,7 +78,7 @@
                 <tbody>
                 {% for proyek_ in proyek %}
                     <tr>
-                        <th scope="row">1</th>
+                        <th scope="row">{{ forloop.counter }}</th>
                         <td><a href = "#">{{proyek_.nama_proyek}}</a></td>
                         <td>{{proyek_.get_latest_step_display}}</td>
                         <td>{{proyek_.created}}</td>
@@ -89,6 +89,22 @@
 
                 </tbody>
             </table>
+        </div>
+
+        <div class="pagination">
+            <span class="step-links">
+                {% if proyek.has_previous %}
+                    <a href="?page={{ proyek.previous_page_number }}">previous</a>
+                {% endif %}
+
+                <span class="current">
+                    Page {{ proyek.number }} of {{ proyek.paginator.num_pages }}.
+                </span>
+
+                {% if proyek.has_next %}
+                    <a href="?page={{ proyek.next_page_number }}">next</a>
+                {% endif %}
+            </span>
         </div>
 
 {% endblock %}

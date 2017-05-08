@@ -54,4 +54,20 @@
             </table>
         </div>
 
+        <div class="pagination">
+            <span class="step-links">
+                {% if kebijakan.has_previous %}
+                    <a href="?page={{ kebijakan.previous_page_number }}">previous</a>
+                {% endif %}
+
+                <span class="current">
+                    Page {{ kebijakan.number }} of {{ kebijakan.paginator.num_pages }}.
+                </span>
+
+                {% if kebijakan.has_next %}
+                    <a href="?page={{ kebijakan.next_page_number }}">next</a>
+                {% endif %}
+            </span>
+        </div>
+
 {% endblock %}
